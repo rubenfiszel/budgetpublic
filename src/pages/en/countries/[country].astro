@@ -72,7 +72,41 @@ const PARENT_COLORS: Record<string, string> = {
   GF03: '#8b5cf6', GF05: '#14b8a6', GF06: '#ec4899', GF08: '#6b7280',
 };
 
-interface SpendingRow { label: string; value: number; pctOfTotal: number; color: string; isParent: boolean }
+// Compute distribution stats for a given set of values
+function quantiles(vals: number[]): { min: number; q1: number; median: number; q3: number; max: number } {
+  const s = vals.filter(v => v > 0).sort((a, b) => a - b);
+  if (s.length === 0) return { min: 0, q1: 0, median: 0, q3: 0, max: 0 };
+  const q = (p: number) => {
+    const i = (s.length - 1) * p;
+    const lo = Math.floor(i);
+    const hi = Math.ceil(i);
+    return s[lo] + (s[hi] - s[lo]) * (i - lo);
+  };
+  return { min: s[0], q1: q(0.25), median: q(0.5), q3: q(0.75), max: s[s.length - 1] };
+}
+
+// Collect L1 spending values across all countries for each category
+const allSpending = (spendingData as any).entries as any[];
+function l1Distribution(l1Key: string): { min: number; q1: number; median: number; q3: number; max: number; rank: number; total: number } {
+  const vals = allSpending.map((e: any) => e.breakdown?.[l1Key] ?? 0).filter((v: number) => v > 0);
+  const stats = quantiles(vals);
+  const currentVal = spendingEntry?.breakdown?.[l1Key] ?? 0;
+  const rank = vals.filter((v: number) => v >= currentVal).length;
+  return { ...stats, rank, total: vals.length };
+}
+
+// Collect L2 spending values across all countries for a given COFOG code
+const allDetailed = (spendingDetailedData as any).entries ?? {};
+function l2Distribution(cofogCode: string): { min: number; q1: number; median: number; q3: number; max: number; rank: number; total: number } {
+  const vals = Object.values(allDetailed).map((e: any) => e?.[cofogCode] ?? 0).filter((v: number) => v > 0);
+  const stats = quantiles(vals);
+  const currentVal = detailedBreakdown?.[cofogCode] ?? 0;
+  const rank = vals.filter((v: number) => v >= currentVal).length;
+  return { ...stats, rank, total: vals.length };
+}
+
+interface Distribution { min: number; q1: number; median: number; q3: number; max: number; rank: number; total: number }
+interface SpendingRow { label: string; value: number; pctOfTotal: number; color: string; isParent: boolean; dist: Distribution | null }
 const spendingRows: SpendingRow[] = [];
 if (spendingEntry) {
   const totalSp = spendingEntry.totalSpendingGdp;
@@ -91,6 +125,7 @@ if (spendingEntry) {
       pctOfTotal: totalSp > 0 ? ((l1Val as number) / totalSp) * 100 : 0,
       color,
       isParent: true,
+      dist: l1Distribution(l1Key),
     });
 
     // Add L2 children if available
@@ -112,6 +147,7 @@ if (spendingEntry) {
           pctOfTotal: totalSp > 0 ? (child.value / totalSp) * 100 : 0,
           color: color + '99',
           isParent: false,
+          dist: l2Distribution(child.code),
         });
       }
     }
@@ -272,6 +308,7 @@ const taxCategoryLabels = {
       client:load
       rows={spendingRows}
       locale={locale}
+      countryName={countryName}
     />
   )}
 
