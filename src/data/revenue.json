@@ -1,0 +1,266 @@
+{
+  "lastUpdated": "2026-03-28",
+  "dataYear": 2024,
+  "entries": [
+    {
+      "country": "CHE",
+      "year": 2024,
+      "totalTaxGdp": 27.17,
+      "breakdown": {
+        "pit": 8.46,
+        "cit": 3.46,
+        "ssc": 6.68,
+        "vat": 3.18,
+        "property": 2.07,
+        "other": 3.32
+      }
+    },
+    {
+      "country": "NOR",
+      "year": 2024,
+      "totalTaxGdp": 40.19,
+      "breakdown": {
+        "pit": 10,
+        "cit": 9.77,
+        "ssc": 9.42,
+        "vat": 7.5,
+        "property": 1.2,
+        "other": 2.3
+      }
+    },
+    {
+      "country": "ISL",
+      "year": 2024,
+      "totalTaxGdp": 36.95,
+      "breakdown": {
+        "pit": 13.63,
+        "cit": 3.23,
+        "ssc": 2.98,
+        "vat": 9.52,
+        "property": 2.33,
+        "other": 5.26
+      }
+    },
+    {
+      "country": "DNK",
+      "year": 2024,
+      "totalTaxGdp": 45.18,
+      "breakdown": {
+        "pit": 25.22,
+        "cit": 4.19,
+        "ssc": 0.07,
+        "vat": 9.11,
+        "property": 1.41,
+        "other": 5.17
+      }
+    },
+    {
+      "country": "SWE",
+      "year": 2024,
+      "totalTaxGdp": 41.44,
+      "breakdown": {
+        "pit": 11.29,
+        "cit": 3.86,
+        "ssc": 8.96,
+        "vat": 8.71,
+        "property": 0.82,
+        "other": 7.8
+      }
+    },
+    {
+      "country": "DEU",
+      "year": 2024,
+      "totalTaxGdp": 38.02,
+      "breakdown": {
+        "pit": 10.06,
+        "cit": 2.18,
+        "ssc": 14.86,
+        "vat": 6.91,
+        "property": 0.92,
+        "other": 3.08
+      }
+    },
+    {
+      "country": "IRL",
+      "year": 2024,
+      "totalTaxGdp": 21.69,
+      "breakdown": {
+        "pit": 6.58,
+        "cit": 5.01,
+        "ssc": 3.37,
+        "vat": 3.89,
+        "property": 0.93,
+        "other": 1.91
+      }
+    },
+    {
+      "country": "SGP",
+      "year": 2024,
+      "totalTaxGdp": 13,
+      "breakdown": {
+        "pit": 2.5,
+        "cit": 3.8,
+        "ssc": 3.4,
+        "vat": 1.8,
+        "property": 1,
+        "other": 0.5
+      }
+    },
+    {
+      "country": "NLD",
+      "year": 2024,
+      "totalTaxGdp": 38.54,
+      "breakdown": {
+        "pit": 9.82,
+        "cit": 4.26,
+        "ssc": 12.05,
+        "vat": 7.02,
+        "property": 1.21,
+        "other": 4.17
+      }
+    },
+    {
+      "country": "AUS",
+      "year": 2023,
+      "totalTaxGdp": 29.87,
+      "breakdown": {
+        "pit": 12.72,
+        "cit": 5.82,
+        "ssc": 0,
+        "vat": 3.32,
+        "property": 2.89,
+        "other": 5.12
+      }
+    },
+    {
+      "country": "BEL",
+      "year": 2024,
+      "totalTaxGdp": 42.57,
+      "breakdown": {
+        "pit": 12.03,
+        "cit": 4.4,
+        "ssc": 13.12,
+        "vat": 6.14,
+        "property": 3.19,
+        "other": 3.69
+      }
+    },
+    {
+      "country": "FIN",
+      "year": 2024,
+      "totalTaxGdp": 42.22,
+      "breakdown": {
+        "pit": 13.07,
+        "cit": 2.58,
+        "ssc": 11.75,
+        "vat": 9.37,
+        "property": 1.49,
+        "other": 3.96
+      }
+    },
+    {
+      "country": "GBR",
+      "year": 2024,
+      "totalTaxGdp": 34.37,
+      "breakdown": {
+        "pit": 10.77,
+        "cit": 3.47,
+        "ssc": 6.07,
+        "vat": 6.99,
+        "property": 3.74,
+        "other": 3.32
+      }
+    },
+    {
+      "country": "NZL",
+      "year": 2024,
+      "totalTaxGdp": 32.89,
+      "breakdown": {
+        "pit": 13.81,
+        "cit": 4.01,
+        "ssc": 0,
+        "vat": 9.67,
+        "property": 2.19,
+        "other": 3.22
+      }
+    },
+    {
+      "country": "JPN",
+      "year": 2023,
+      "totalTaxGdp": 33.73,
+      "breakdown": {
+        "pit": 6.18,
+        "cit": 4.7,
+        "ssc": 13.19,
+        "vat": 4.94,
+        "property": 2.75,
+        "other": 1.97
+      }
+    },
+    {
+      "country": "KOR",
+      "year": 2024,
+      "totalTaxGdp": 25.33,
+      "breakdown": {
+        "pit": 5.09,
+        "cit": 2.82,
+        "ssc": 7.66,
+        "vat": 4.24,
+        "property": 2.98,
+        "other": 2.55
+      }
+    },
+    {
+      "country": "CAN",
+      "year": 2024,
+      "totalTaxGdp": 34.9,
+      "breakdown": {
+        "pit": 12.82,
+        "cit": 4.61,
+        "ssc": 5.28,
+        "vat": 4.74,
+        "property": 3.36,
+        "other": 4.09
+      }
+    },
+    {
+      "country": "USA",
+      "year": 2024,
+      "totalTaxGdp": 25.62,
+      "breakdown": {
+        "pit": 10.32,
+        "cit": 2.24,
+        "ssc": 5.98,
+        "vat": 0,
+        "property": 2.93,
+        "other": 4.14
+      }
+    },
+    {
+      "country": "FRA",
+      "year": 2024,
+      "totalTaxGdp": 43.46,
+      "breakdown": {
+        "pit": 9.29,
+        "cit": 2.25,
+        "ssc": 14.68,
+        "vat": 7.05,
+        "property": 3.4,
+        "other": 6.79
+      }
+    },
+    {
+      "country": "AUT",
+      "year": 2024,
+      "totalTaxGdp": 43.37,
+      "breakdown": {
+        "pit": 9.51,
+        "cit": 3.01,
+        "ssc": 15.61,
+        "vat": 7.94,
+        "property": 0.43,
+        "other": 6.88
+      }
+    }
+  ]
+}

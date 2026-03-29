@@ -1,0 +1,89 @@
+{
+  "lastUpdated": "2026-03-28",
+  "sources": {
+    "incomeTaxByDecile": "DGFiP / INSEE Filosofi 2023",
+    "spendingByAge": "DREES Comptes de la protection sociale 2023 + INSEE estimates",
+    "immigrationImpact": "INSEE / Chojnicki et al. (2018), France Stratégie 2019"
+  },
+  "incomeTaxByDecile": {
+    "description": {
+      "en": "Share of total income tax (IRPP) paid by each income decile. The top 10% of households pay over 70% of all income tax.",
+      "fr": "Part de l'impôt sur le revenu (IRPP) payée par chaque décile de revenu. Les 10% les plus aisés paient plus de 70% de l'impôt sur le revenu."
+    },
+    "deciles": [
+      { "label": "D1 (lowest)", "labelFr": "D1 (plus bas)", "shareOfIncomeTax": 0.0, "avgTaxRate": 0.0, "monthlyIncome": 1050 },
+      { "label": "D2", "labelFr": "D2", "shareOfIncomeTax": 0.0, "avgTaxRate": 0.0, "monthlyIncome": 1350 },
+      { "label": "D3", "labelFr": "D3", "shareOfIncomeTax": 0.0, "avgTaxRate": 0.0, "monthlyIncome": 1550 },
+      { "label": "D4", "labelFr": "D4", "shareOfIncomeTax": 0.1, "avgTaxRate": 0.3, "monthlyIncome": 1750 },
+      { "label": "D5", "labelFr": "D5", "shareOfIncomeTax": 0.5, "avgTaxRate": 1.2, "monthlyIncome": 1970 },
+      { "label": "D6", "labelFr": "D6", "shareOfIncomeTax": 1.5, "avgTaxRate": 2.8, "monthlyIncome": 2200 },
+      { "label": "D7", "labelFr": "D7", "shareOfIncomeTax": 3.5, "avgTaxRate": 4.5, "monthlyIncome": 2500 },
+      { "label": "D8", "labelFr": "D8", "shareOfIncomeTax": 7.0, "avgTaxRate": 6.8, "monthlyIncome": 2900 },
+      { "label": "D9", "labelFr": "D9", "shareOfIncomeTax": 16.0, "avgTaxRate": 9.5, "monthlyIncome": 3600 },
+      { "label": "D10 (highest)", "labelFr": "D10 (plus haut)", "shareOfIncomeTax": 71.4, "avgTaxRate": 18.2, "monthlyIncome": 6500 }
+    ]
+  },
+  "spendingByAge": {
+    "description": {
+      "en": "Estimated allocation of government spending by age group. Pensions dominate spending on the 60+ age group, while education drives spending on the young.",
+      "fr": "Répartition estimée des dépenses publiques par tranche d'âge. Les retraites dominent les dépenses pour les 60+, tandis que l'éducation représente l'essentiel des dépenses pour les jeunes."
+    },
+    "groups": [
+      {
+        "ageRange": "0-17",
+        "label": { "en": "Children (0-17)", "fr": "Enfants (0-17)" },
+        "population": 14.0,
+        "spendingShare": 14.5,
+        "mainComponents": {
+          "en": "Education (9.2%), Family benefits (3.8%), Health (1.5%)",
+          "fr": "Éducation (9,2%), Allocations familiales (3,8%), Santé (1,5%)"
+        },
+        "perCapita": 9200
+      },
+      {
+        "ageRange": "18-24",
+        "label": { "en": "Young adults (18-24)", "fr": "Jeunes adultes (18-24)" },
+        "population": 8.0,
+        "spendingShare": 7.5,
+        "mainComponents": {
+          "en": "Higher education (2.5%), Health (1.8%), Unemployment/RSA (2.2%), Housing aid (1.0%)",
+          "fr": "Enseignement supérieur (2,5%), Santé (1,8%), Chômage/RSA (2,2%), Aide au logement (1,0%)"
+        },
+        "perCapita": 8300
+      },
+      {
+        "ageRange": "25-59",
+        "label": { "en": "Working age (25-59)", "fr": "Âge actif (25-59)" },
+        "population": 45.0,
+        "spendingShare": 30.0,
+        "mainComponents": {
+          "en": "Health (11.5%), Unemployment (4.2%), Family (5.8%), Housing (3.0%), Disability (5.5%)",
+          "fr": "Santé (11,5%), Chômage (4,2%), Famille (5,8%), Logement (3,0%), Invalidité (5,5%)"
+        },
+        "perCapita": 5900
+      },
+      {
+        "ageRange": "60+",
+        "label": { "en": "Seniors (60+)", "fr": "Seniors (60+)" },
+        "population": 27.0,
+        "spendingShare": 48.0,
+        "mainComponents": {
+          "en": "Pensions (31.0%), Health (12.5%), Dependency/care (3.0%), Survivors (1.5%)",
+          "fr": "Retraites (31,0%), Santé (12,5%), Dépendance (3,0%), Survivants (1,5%)"
+        },
+        "perCapita": 15800
+      }
+    ]
+  },
+  "immigrationFiscalImpact": {
+    "description": {
+      "en": "Academic estimates suggest immigration has a near-neutral fiscal impact in France (±0.5% of GDP). Immigrants contribute through taxes and consumption, while receiving public services. EU immigrants have a slightly positive net contribution; non-EU immigrants have a slightly negative one, largely driven by higher unemployment rates.",
+      "fr": "Les études académiques estiment que l'immigration a un impact budgétaire quasi neutre en France (±0,5% du PIB). Les immigrés contribuent par les impôts et la consommation, tout en bénéficiant des services publics. Les immigrés européens ont une contribution nette légèrement positive ; les immigrés non-européens légèrement négative, principalement en raison d'un taux de chômage plus élevé."
+    },
+    "netFiscalImpact": 0.0,
+    "euImmigrants": { "netContribution": 0.3, "unemploymentRate": 9.3 },
+    "nonEuImmigrants": { "netContribution": -0.5, "unemploymentRate": 20.7 },
+    "nativePopulation": { "netContribution": 0.0, "unemploymentRate": 8.5 },
+    "source": "Chojnicki, Docquier & Ragot (2018); France Stratégie (2019)"
+  }
+}

@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BudgetRankings from '../../components/interactive/BudgetRankings.svelte';
+import { t } from '../../i18n/utils';
+import revenueData from '../../data/revenue.json';
+import spendingData from '../../data/spending.json';
+import fiscalData from '../../data/fiscal.json';
+import countriesData from '../../data/countries.json';
+
+const locale = 'fr' as const;
+
+type Country = { code: string; slug: string; name: { en: string; fr: string }; flag: string };
+
+const fraRev = revenueData.entries.find(e => e.country === 'FRA')!;
+const fraSp = (spendingData as any).entries.find((e: any) => e.country === 'FRA');
+const fraFi = (fiscalData as any).entries.find((e: any) => e.country === 'FRA');
+
+const budgetEntries = (countriesData as Country[]).map((c) => {
+  const rev = revenueData.entries.find((e) => e.country === c.code);
+  const sp = (spendingData as any).entries.find((e: any) => e.country === c.code);
+  const fi = (fiscalData as any).entries.find((e: any) => e.country === c.code);
+  return {
+    code: c.code, name: c.name[locale], slug: c.slug, flag: c.flag,
+    revenue: fi?.revenue ?? rev?.totalTaxGdp ?? 0,
+    spending: sp?.totalSpendingGdp ?? 0,
+    balance: fi?.balance ?? 0,
+  };
+}).filter(e => e.spending > 0);
+
+const spendRank = [...budgetEntries].sort((a, b) => b.spending - a.spending).findIndex(e => e.code === 'FRA') + 1;
+const taxRank = [...budgetEntries].sort((a, b) => b.revenue - a.revenue).findIndex(e => e.code === 'FRA') + 1;
+const debtRank = [...(fiscalData as any).entries].sort((a: any, b: any) => b.debt - a.debt).findIndex((e: any) => e.country === 'FRA') + 1;
+---
+<BaseLayout title={t(locale, 'site.subtitle')} description="Comment la France collecte et dépense ses impôts — comparaison avec 19 autres pays développés" locale={locale}>
+
+  <section class="france-hero">
+    <div class="hero-top">
+      <span class="hero-flag">🇫🇷</span>
+      <div>
+        <h1>France — Budget de l'État</h1>
+        <p class="hero-sub">Comment la France taxe, dépense et emprunte — comparaison avec 19 autres pays développés</p>
+      </div>
+    </div>
+
+    <div class="key-stats">
+      <div class="stat-card blue">
+        <span class="stat-value">{fraFi?.revenue.toFixed(1)}%</span>
+        <span class="stat-label">Recettes (% PIB)</span>
+        <span class="stat-rank">#{taxRank} sur {budgetEntries.length}</span>
+      </div>
+      <div class="stat-card red">
+        <span class="stat-value">{fraFi?.spending.toFixed(1)}%</span>
+        <span class="stat-label">Dépenses (% PIB)</span>
+        <span class="stat-rank">#{spendRank} sur {budgetEntries.length}</span>
+      </div>
+      <div class="stat-card amber">
+        <span class="stat-value">{fraFi?.balance > 0 ? '+' : ''}{fraFi?.balance.toFixed(1)}%</span>
+        <span class="stat-label">Déficit (% PIB)</span>
+      </div>
+      <div class="stat-card dark">
+        <span class="stat-value">{fraFi?.debt.toFixed(0)}%</span>
+        <span class="stat-label">Dette brute (% PIB)</span>
+        <span class="stat-rank">#{debtRank} sur {budgetEntries.length}</span>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href={`/${locale}/countries/france`} class="cta-btn primary">Explorer la France en détail &rarr;</a>
+    </div>
+  </section>
+
+  <section class="chart-section">
+    <div class="section-header">
+      <h2>Où se situe la France</h2>
+      <span class="badge">{t(locale, 'home.data_year')}: {spendingData.dataYear}</span>
+    </div>
+    <p class="chart-hint">Recettes (bleu) vs Dépenses (rouge), trié par dépenses. Cliquez sur un pays pour le détail.</p>
+    <BudgetRankings
+      client:load
+      entries={budgetEntries}
+      baseUrl={`/${locale}/countries`}
+      revenueLabel={t(locale, 'country.revenue')}
+      spendingLabel={t(locale, 'country.spending')}
+    />
+  </section>
+
+  <section class="snapshot">
+    <h2>En bref — France {spendingData.dataYear}</h2>
+    <div class="facts-grid">
+      <div class="fact">
+        <span class="fact-icon">💰</span>
+        <div>
+          <strong>Structure fiscale</strong>
+          <p>Seulement 5% des recettes viennent des entreprises, 55% des individus (IR + cotisations). La France repose fortement sur les cotisations patronales (26,7% du coût du travail).</p>
+        </div>
+      </div>
+      <div class="fact">
+        <span class="fact-icon">👴</span>
+        <div>
+          <strong>Poids des retraites</strong>
+          <p>Les dépenses de vieillesse/retraite représentent 13,2% du PIB — le premier poste de dépenses, soit ~56% de toute la protection sociale.</p>
+        </div>
+      </div>
+      <div class="fact">
+        <span class="fact-icon">🏥</span>
+        <div>
+          <strong>Dépenses de santé élevées</strong>
+          <p>8,8% du PIB en santé, parmi les plus élevés d'Europe — pourtant l'espérance de vie (82,9 ans) est comparable à des pays qui dépensent moins.</p>
+        </div>
+      </div>
+      <div class="fact">
+        <span class="fact-icon">📉</span>
+        <div>
+          <strong>Dette croissante</strong>
+          <p>À {fraFi?.debt.toFixed(0)}% du PIB, la dette française est la 3e plus élevée du groupe — derrière le Japon (227%) et les États-Unis (137%).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="countries-grid">
+    <h2>Comparer avec d'autres pays</h2>
+    <div class="grid">
+      {budgetEntries.sort((a, b) => b.spending - a.spending).map((entry) => (
+        <a href={`/${locale}/countries/${entry.slug}`} class={`country-card ${entry.code === 'FRA' ? 'highlight' : ''}`}>
+          <span class="flag">{entry.flag}</span>
+          <div class="card-info">
+            <span class="name">{entry.name}</span>
+            <span class="card-stats">
+              <span class="stat rev">Rev {entry.revenue.toFixed(1)}%</span>
+              <span class="stat spend">Dép {entry.spending.toFixed(1)}%</span>
+              <span class={`stat ${entry.balance >= 0 ? 'surplus' : 'deficit'}`}>{entry.balance > 0 ? '+' : ''}{entry.balance.toFixed(1)}%</span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .france-hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+    border-radius: 16px; padding: 2rem 2.5rem; color: white; margin-bottom: 2rem;
+  }
+  .hero-top { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.5rem; }
+  .hero-flag { font-size: 3.5rem; }
+  .france-hero h1 { font-size: 1.75rem; font-weight: 800; line-height: 1.2; }
+  .hero-sub { opacity: 0.85; font-size: 1rem; margin-top: 0.25rem; }
+
+  .key-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  @media (max-width: 768px) { .key-stats { grid-template-columns: repeat(2, 1fr); } }
+
+  .stat-card {
+    background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
+    border-radius: 12px; padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat-value { display: block; font-size: 2rem; font-weight: 800; line-height: 1.1; }
+  .stat-label { display: block; font-size: 0.8rem; opacity: 0.8; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.3px; }
+  .stat-rank { display: block; font-size: 0.75rem; opacity: 0.6; margin-top: 0.15rem; }
+  .stat-card.blue .stat-value { color: #93c5fd; }
+  .stat-card.red .stat-value { color: #fca5a5; }
+  .stat-card.amber .stat-value { color: #fcd34d; }
+  .stat-card.dark .stat-value { color: #fdba74; }
+
+  .hero-cta { margin-top: 1.5rem; text-align: center; }
+  .cta-btn { display: inline-block; padding: 0.6rem 1.5rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: transform 0.1s; }
+  .cta-btn:hover { transform: translateY(-1px); text-decoration: none; }
+  .cta-btn.primary { background: white; color: #1e3a5f; }
+
+  .chart-section { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; padding: 1.5rem; }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.25rem; }
+  .section-header h2 { font-size: 1.15rem; font-weight: 700; }
+  .badge { background: var(--color-bg); border: 1px solid var(--color-border); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; color: var(--color-text-muted); }
+  .chart-hint { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1rem; }
+
+  .snapshot { margin-top: 2.5rem; }
+  .snapshot h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 700px) { .facts-grid { grid-template-columns: 1fr; } }
+  .fact { display: flex; gap: 0.75rem; padding: 1rem 1.25rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 10px; }
+  .fact-icon { font-size: 1.75rem; flex-shrink: 0; }
+  .fact strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
+  .fact p { font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.5; }
+
+  .countries-grid { margin-top: 2.5rem; }
+  .countries-grid h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem; }
+  .country-card { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; transition: border-color 0.15s, box-shadow 0.15s; text-decoration: none; color: var(--color-text); }
+  .country-card:hover { border-color: var(--color-primary); box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1); text-decoration: none; }
+  .country-card.highlight { border-color: #2563eb; background: #eff6ff; box-shadow: 0 0 0 2px #93c5fd; }
+  .flag { font-size: 1.5rem; }
+  .card-info { flex: 1; display: flex; flex-direction: column; gap: 0.2rem; }
+  .name { font-weight: 500; font-size: 0.95rem; }
+  .card-stats { display: flex; gap: 0.5rem; font-size: 0.75rem; font-weight: 600; }
+  .stat { padding: 0.1rem 0.4rem; border-radius: 4px; }
+  .stat.rev { background: #dbeafe; color: #1e40af; }
+  .stat.spend { background: #fee2e2; color: #991b1b; }
+  .stat.deficit { background: #fee2e2; color: #991b1b; }
+  .stat.surplus { background: #d1fae5; color: #065f46; }
+</style>

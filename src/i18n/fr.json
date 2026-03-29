@@ -1,0 +1,82 @@
+{
+  "site": {
+    "title": "ObsBudget",
+    "subtitle": "Observatoire des impôts et dépenses publiques",
+    "description": "Comparez comment 20 pays développés collectent et dépensent les impôts"
+  },
+  "nav": {
+    "home": "Accueil",
+    "compare": "Comparer",
+    "methodology": "Méthodologie",
+    "language": "English"
+  },
+  "home": {
+    "hero_title": "Comment les gouvernements taxent et dépensent ?",
+    "hero_subtitle": "Comparaison de la fiscalité, des dépenses et des résultats dans 20 des pays les plus développés au monde",
+    "chart_title": "Recettes fiscales en % du PIB",
+    "spending_chart_title": "Dépenses publiques en % du PIB",
+    "explore_countries": "Explorer les pays",
+    "last_updated": "Dernière mise à jour",
+    "data_year": "Année des données"
+  },
+  "country": {
+    "back": "Retour à tous les pays",
+    "tax_breakdown": "Répartition des recettes fiscales",
+    "spending_breakdown": "Répartition des dépenses publiques",
+    "fiscal_balance": "Équilibre budgétaire",
+    "outcomes": "Résultats des dépenses",
+    "vs_average": "Comparaison avec la moyenne OCDE",
+    "tax_to_gdp": "Ratio impôts/PIB",
+    "of_gdp": "% du PIB",
+    "of_total": "% des recettes fiscales totales",
+    "revenue": "Recettes",
+    "spending": "Dépenses",
+    "balance": "Solde",
+    "deficit": "Déficit",
+    "surplus": "Excédent",
+    "debt": "Dette brute",
+    "admin_overhead": "Frais de fonctionnement",
+    "admin_note": "Les services publics généraux comprennent le service de la dette, les organes exécutifs/législatifs et l'administration générale",
+    "budget_flow": "Flux budgétaire",
+    "borrowing": "Emprunt"
+  },
+  "spending_categories": {
+    "general_public_services": "Services publics généraux",
+    "defence": "Défense",
+    "public_order": "Ordre et sécurité publics",
+    "economic_affairs": "Affaires économiques",
+    "environment": "Protection de l'environnement",
+    "housing": "Logement et équipements collectifs",
+    "health": "Santé",
+    "culture": "Loisirs et culture",
+    "education": "Enseignement",
+    "social_protection": "Protection sociale"
+  },
+  "tax_categories": {
+    "pit": "Impôt sur le revenu",
+    "cit": "Impôt sur les sociétés",
+    "ssc": "Cotisations sociales",
+    "vat": "TVA",
+    "property": "Impôts fonciers",
+    "other": "Autres impôts"
+  },
+  "outcomes": {
+    "title": "Que produisent les dépenses ?",
+    "health_title": "Dépenses de santé vs Espérance de vie",
+    "education_title": "Dépenses d'éducation vs Score PISA",
+    "life_expectancy": "Espérance de vie",
+    "infant_mortality": "Mortalité infantile",
+    "pisa_average": "Score PISA moyen",
+    "health_spending": "Dépenses de santé (% PIB)",
+    "education_spending": "Dépenses d'éducation (% PIB)",
+    "years": "ans",
+    "per_1000": "pour 1 000 naissances"
+  },
+  "common": {
+    "percent_of_gdp": "% du PIB",
+    "oecd_average": "Moyenne OCDE",
+    "source": "Source",
+    "oecd_revenue_stats": "Statistiques des recettes publiques de l'OCDE",
+    "oecd_naag": "Comptes nationaux de l'OCDE"
+  }
+}

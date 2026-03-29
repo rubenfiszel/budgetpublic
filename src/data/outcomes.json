@@ -1,0 +1,190 @@
+{
+  "lastUpdated": "2026-03-28",
+  "sources": {
+    "lifeExpectancy": "World Bank (SP.DYN.LE00.IN)",
+    "infantMortality": "World Bank (SP.DYN.IMRT.IN)",
+    "pisa": "OECD PISA 2022"
+  },
+  "entries": [
+    {
+      "country": "CHE",
+      "lifeExpectancy": 84.1,
+      "infantMortality": 3.5,
+      "pisaAverage": 498,
+      "pisaMath": 508,
+      "pisaReading": 483,
+      "pisaScience": 503
+    },
+    {
+      "country": "NOR",
+      "lifeExpectancy": 83.1,
+      "infantMortality": 1.9,
+      "pisaAverage": 474,
+      "pisaMath": 468,
+      "pisaReading": 477,
+      "pisaScience": 478
+    },
+    {
+      "country": "ISL",
+      "lifeExpectancy": 82.6,
+      "infantMortality": 1.9,
+      "pisaAverage": 447,
+      "pisaMath": 459,
+      "pisaReading": 436,
+      "pisaScience": 447
+    },
+    {
+      "country": "DNK",
+      "lifeExpectancy": 81.9,
+      "infantMortality": 3,
+      "pisaAverage": 491,
+      "pisaMath": 489,
+      "pisaReading": 489,
+      "pisaScience": 494
+    },
+    {
+      "country": "SWE",
+      "lifeExpectancy": 83.3,
+      "infantMortality": 2,
+      "pisaAverage": 488,
+      "pisaMath": 482,
+      "pisaReading": 487,
+      "pisaScience": 494
+    },
+    {
+      "country": "DEU",
+      "lifeExpectancy": 80.5,
+      "infantMortality": 3.1,
+      "pisaAverage": 482,
+      "pisaMath": 475,
+      "pisaReading": 480,
+      "pisaScience": 492
+    },
+    {
+      "country": "IRL",
+      "lifeExpectancy": 82.9,
+      "infantMortality": 3.4,
+      "pisaAverage": 504,
+      "pisaMath": 492,
+      "pisaReading": 516,
+      "pisaScience": 504
+    },
+    {
+      "country": "SGP",
+      "lifeExpectancy": 82.9,
+      "infantMortality": 1.7,
+      "pisaAverage": 560,
+      "pisaMath": 575,
+      "pisaReading": 543,
+      "pisaScience": 561
+    },
+    {
+      "country": "NLD",
+      "lifeExpectancy": 81.9,
+      "infantMortality": 3.5,
+      "pisaAverage": 489,
+      "pisaMath": 493,
+      "pisaReading": 485,
+      "pisaScience": 488
+    },
+    {
+      "country": "AUS",
+      "lifeExpectancy": 83.1,
+      "infantMortality": 3.1,
+      "pisaAverage": 497,
+      "pisaMath": 487,
+      "pisaReading": 498,
+      "pisaScience": 507
+    },
+    {
+      "country": "BEL",
+      "lifeExpectancy": 82.4,
+      "infantMortality": 3,
+      "pisaAverage": 486,
+      "pisaMath": 489,
+      "pisaReading": 479,
+      "pisaScience": 491
+    },
+    {
+      "country": "FIN",
+      "lifeExpectancy": 81.7,
+      "infantMortality": 1.8,
+      "pisaAverage": 495,
+      "pisaMath": 484,
+      "pisaReading": 490,
+      "pisaScience": 511
+    },
+    {
+      "country": "GBR",
+      "lifeExpectancy": 81.2,
+      "infantMortality": 4,
+      "pisaAverage": 494,
+      "pisaMath": 489,
+      "pisaReading": 494,
+      "pisaScience": 500
+    },
+    {
+      "country": "NZL",
+      "lifeExpectancy": 83,
+      "infantMortality": 4,
+      "pisaAverage": 495,
+      "pisaMath": 479,
+      "pisaReading": 501,
+      "pisaScience": 504
+    },
+    {
+      "country": "JPN",
+      "lifeExpectancy": 84,
+      "infantMortality": 1.8,
+      "pisaAverage": 533,
+      "pisaMath": 536,
+      "pisaReading": 516,
+      "pisaScience": 547
+    },
+    {
+      "country": "KOR",
+      "lifeExpectancy": 83.4,
+      "infantMortality": 2.3,
+      "pisaAverage": 523,
+      "pisaMath": 527,
+      "pisaReading": 515,
+      "pisaScience": 528
+    },
+    {
+      "country": "CAN",
+      "lifeExpectancy": 81.6,
+      "infantMortality": 4.4,
+      "pisaAverage": 506,
+      "pisaMath": 497,
+      "pisaReading": 507,
+      "pisaScience": 515
+    },
+    {
+      "country": "USA",
+      "lifeExpectancy": 78.4,
+      "infantMortality": 5.5,
+      "pisaAverage": 489,
+      "pisaMath": 465,
+      "pisaReading": 504,
+      "pisaScience": 499
+    },
+    {
+      "country": "FRA",
+      "lifeExpectancy": 82.9,
+      "infantMortality": 3.4,
+      "pisaAverage": 478,
+      "pisaMath": 474,
+      "pisaReading": 474,
+      "pisaScience": 487
+    },
+    {
+      "country": "AUT",
+      "lifeExpectancy": 81.5,
+      "infantMortality": 2.6,
+      "pisaAverage": 486,
+      "pisaMath": 487,
+      "pisaReading": 480,
+      "pisaScience": 491
+    }
+  ]
+}

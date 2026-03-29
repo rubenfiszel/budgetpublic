@@ -1,0 +1,166 @@
+{
+  "lastUpdated": "2026-03-28",
+  "dataYear": 2024,
+  "entries": [
+    {
+      "country": "CHE",
+      "year": 2024,
+      "revenue": 33,
+      "spending": 32.47,
+      "balance": 0.53,
+      "debt": 38.92
+    },
+    {
+      "country": "NOR",
+      "year": 2024,
+      "revenue": 62.4,
+      "spending": 49.34,
+      "balance": 13.06,
+      "debt": 61.38
+    },
+    {
+      "country": "ISL",
+      "year": 2024,
+      "revenue": 43.43,
+      "spending": 47.14,
+      "balance": -3.71,
+      "debt": 89.76
+    },
+    {
+      "country": "DNK",
+      "year": 2024,
+      "revenue": 51.79,
+      "spending": 47.33,
+      "balance": 4.46,
+      "debt": 37.85
+    },
+    {
+      "country": "SWE",
+      "year": 2024,
+      "revenue": 49.07,
+      "spending": 50.66,
+      "balance": -1.59,
+      "debt": 55.94
+    },
+    {
+      "country": "DEU",
+      "year": 2024,
+      "revenue": 46.76,
+      "spending": 49.43,
+      "balance": -2.66,
+      "debt": 62.86
+    },
+    {
+      "country": "IRL",
+      "year": 2024,
+      "revenue": 26.4,
+      "spending": 22.39,
+      "balance": 4.02,
+      "debt": 38.9
+    },
+    {
+      "country": "SGP",
+      "year": 2023,
+      "revenue": 18.5,
+      "spending": 16.4,
+      "balance": 2.1,
+      "debt": 168
+    },
+    {
+      "country": "NLD",
+      "year": 2024,
+      "revenue": 43.47,
+      "spending": 44.41,
+      "balance": -0.94,
+      "debt": 48.18
+    },
+    {
+      "country": "AUS",
+      "year": 2024,
+      "revenue": 35.68,
+      "spending": 39.64,
+      "balance": -3.96,
+      "debt": 71.33
+    },
+    {
+      "country": "BEL",
+      "year": 2024,
+      "revenue": 49.69,
+      "spending": 54.05,
+      "balance": -4.36,
+      "debt": 103.6
+    },
+    {
+      "country": "FIN",
+      "year": 2024,
+      "revenue": 53.39,
+      "spending": 57.75,
+      "balance": -4.35,
+      "debt": 85.32
+    },
+    {
+      "country": "GBR",
+      "year": 2024,
+      "revenue": 40.21,
+      "spending": 46.27,
+      "balance": -6.06,
+      "debt": 91.6
+    },
+    {
+      "country": "NZL",
+      "year": 2024,
+      "revenue": 40.83,
+      "spending": 44.04,
+      "balance": -3.21,
+      "debt": 55.82
+    },
+    {
+      "country": "JPN",
+      "year": 2024,
+      "revenue": 38.34,
+      "spending": 40.6,
+      "balance": -2.25,
+      "debt": 227.28
+    },
+    {
+      "country": "KOR",
+      "year": 2024,
+      "revenue": 33.59,
+      "spending": 35.05,
+      "balance": -1.47,
+      "debt": 56.57
+    },
+    {
+      "country": "CAN",
+      "year": 2024,
+      "revenue": 42.99,
+      "spending": 45.11,
+      "balance": -2.12,
+      "debt": 116.64
+    },
+    {
+      "country": "USA",
+      "year": 2024,
+      "revenue": 31.53,
+      "spending": 39.57,
+      "balance": -8.04,
+      "debt": 137.34
+    },
+    {
+      "country": "FRA",
+      "year": 2024,
+      "revenue": 51.44,
+      "spending": 57.26,
+      "balance": -5.81,
+      "debt": 116.68
+    },
+    {
+      "country": "AUT",
+      "year": 2024,
+      "revenue": 50.51,
+      "spending": 55.19,
+      "balance": -4.68,
+      "debt": 83.52
+    }
+  ]
+}

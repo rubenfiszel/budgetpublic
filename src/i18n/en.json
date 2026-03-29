@@ -1,0 +1,82 @@
+{
+  "site": {
+    "title": "ObsBudget",
+    "subtitle": "Government Tax & Spending Observatory",
+    "description": "Compare how 20 developed countries collect and spend taxes"
+  },
+  "nav": {
+    "home": "Home",
+    "compare": "Compare",
+    "methodology": "Methodology",
+    "language": "Français"
+  },
+  "home": {
+    "hero_title": "How do governments tax and spend?",
+    "hero_subtitle": "Comparing taxation, spending, and outcomes across 20 of the world's most developed countries",
+    "chart_title": "Tax Revenue as % of GDP",
+    "spending_chart_title": "Government Spending as % of GDP",
+    "explore_countries": "Explore Countries",
+    "last_updated": "Last updated",
+    "data_year": "Data year"
+  },
+  "country": {
+    "back": "Back to all countries",
+    "tax_breakdown": "Tax Revenue Breakdown",
+    "spending_breakdown": "Government Spending Breakdown",
+    "fiscal_balance": "Fiscal Balance",
+    "outcomes": "Spending Outcomes",
+    "vs_average": "Compared to OECD Average",
+    "tax_to_gdp": "Tax-to-GDP Ratio",
+    "of_gdp": "% of GDP",
+    "of_total": "% of total tax revenue",
+    "revenue": "Revenue",
+    "spending": "Spending",
+    "balance": "Balance",
+    "deficit": "Deficit",
+    "surplus": "Surplus",
+    "debt": "Gross Debt",
+    "admin_overhead": "Administrative Overhead",
+    "admin_note": "General Public Services includes debt servicing, executive/legislative bodies, and general administration",
+    "budget_flow": "Budget Flow",
+    "borrowing": "Borrowing"
+  },
+  "spending_categories": {
+    "general_public_services": "General Public Services",
+    "defence": "Defence",
+    "public_order": "Public Order & Safety",
+    "economic_affairs": "Economic Affairs",
+    "environment": "Environmental Protection",
+    "housing": "Housing & Community",
+    "health": "Health",
+    "culture": "Recreation & Culture",
+    "education": "Education",
+    "social_protection": "Social Protection"
+  },
+  "tax_categories": {
+    "pit": "Personal Income Tax",
+    "cit": "Corporate Income Tax",
+    "ssc": "Social Security Contributions",
+    "vat": "VAT / Sales Tax",
+    "property": "Property Taxes",
+    "other": "Other Taxes"
+  },
+  "outcomes": {
+    "title": "What does the spending achieve?",
+    "health_title": "Health Spending vs Life Expectancy",
+    "education_title": "Education Spending vs PISA Score",
+    "life_expectancy": "Life Expectancy",
+    "infant_mortality": "Infant Mortality",
+    "pisa_average": "PISA Average Score",
+    "health_spending": "Health Spending (% GDP)",
+    "education_spending": "Education Spending (% GDP)",
+    "years": "years",
+    "per_1000": "per 1,000 births"
+  },
+  "common": {
+    "percent_of_gdp": "% of GDP",
+    "oecd_average": "OECD Average",
+    "source": "Source",
+    "oecd_revenue_stats": "OECD Revenue Statistics",
+    "oecd_naag": "OECD National Accounts"
+  }
+}

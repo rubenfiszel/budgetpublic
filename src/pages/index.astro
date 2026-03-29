@@ -1,0 +1,8 @@
+---
+// Root page: redirect to user's preferred language
+const acceptLang = Astro.request.headers.get('accept-language') ?? '';
+const prefersFrench = acceptLang.toLowerCase().startsWith('fr');
+const target = prefersFrench ? '/fr/' : '/en/';
+
+return Astro.redirect(target, 302);
+---

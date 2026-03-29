@@ -1,0 +1,22 @@
+[
+  { "code": "CHE", "slug": "switzerland", "name": { "en": "Switzerland", "fr": "Suisse" }, "region": "Europe", "flag": "🇨🇭" },
+  { "code": "NOR", "slug": "norway", "name": { "en": "Norway", "fr": "Norvège" }, "region": "Europe", "flag": "🇳🇴" },
+  { "code": "ISL", "slug": "iceland", "name": { "en": "Iceland", "fr": "Islande" }, "region": "Europe", "flag": "🇮🇸" },
+  { "code": "DNK", "slug": "denmark", "name": { "en": "Denmark", "fr": "Danemark" }, "region": "Europe", "flag": "🇩🇰" },
+  { "code": "SWE", "slug": "sweden", "name": { "en": "Sweden", "fr": "Suède" }, "region": "Europe", "flag": "🇸🇪" },
+  { "code": "DEU", "slug": "germany", "name": { "en": "Germany", "fr": "Allemagne" }, "region": "Europe", "flag": "🇩🇪" },
+  { "code": "IRL", "slug": "ireland", "name": { "en": "Ireland", "fr": "Irlande" }, "region": "Europe", "flag": "🇮🇪" },
+  { "code": "SGP", "slug": "singapore", "name": { "en": "Singapore", "fr": "Singapour" }, "region": "Asia", "flag": "🇸🇬" },
+  { "code": "NLD", "slug": "netherlands", "name": { "en": "Netherlands", "fr": "Pays-Bas" }, "region": "Europe", "flag": "🇳🇱" },
+  { "code": "AUS", "slug": "australia", "name": { "en": "Australia", "fr": "Australie" }, "region": "Oceania", "flag": "🇦🇺" },
+  { "code": "BEL", "slug": "belgium", "name": { "en": "Belgium", "fr": "Belgique" }, "region": "Europe", "flag": "🇧🇪" },
+  { "code": "FIN", "slug": "finland", "name": { "en": "Finland", "fr": "Finlande" }, "region": "Europe", "flag": "🇫🇮" },
+  { "code": "GBR", "slug": "united-kingdom", "name": { "en": "United Kingdom", "fr": "Royaume-Uni" }, "region": "Europe", "flag": "🇬🇧" },
+  { "code": "NZL", "slug": "new-zealand", "name": { "en": "New Zealand", "fr": "Nouvelle-Zélande" }, "region": "Oceania", "flag": "🇳🇿" },
+  { "code": "JPN", "slug": "japan", "name": { "en": "Japan", "fr": "Japon" }, "region": "Asia", "flag": "🇯🇵" },
+  { "code": "KOR", "slug": "south-korea", "name": { "en": "South Korea", "fr": "Corée du Sud" }, "region": "Asia", "flag": "🇰🇷" },
+  { "code": "CAN", "slug": "canada", "name": { "en": "Canada", "fr": "Canada" }, "region": "Americas", "flag": "🇨🇦" },
+  { "code": "USA", "slug": "united-states", "name": { "en": "United States", "fr": "États-Unis" }, "region": "Americas", "flag": "🇺🇸" },
+  { "code": "FRA", "slug": "france", "name": { "en": "France", "fr": "France" }, "region": "Europe", "flag": "🇫🇷" },
+  { "code": "AUT", "slug": "austria", "name": { "en": "Austria", "fr": "Autriche" }, "region": "Europe", "flag": "🇦🇹" }
+]

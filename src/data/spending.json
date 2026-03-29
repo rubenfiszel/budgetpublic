@@ -1,0 +1,398 @@
+{
+  "lastUpdated": "2026-03-28",
+  "dataYear": 2024,
+  "categories": [
+    {
+      "key": "general_public_services",
+      "en": "General Public Services",
+      "fr": "Services publics généraux"
+    },
+    {
+      "key": "defence",
+      "en": "Defence",
+      "fr": "Défense"
+    },
+    {
+      "key": "public_order",
+      "en": "Public Order & Safety",
+      "fr": "Ordre et sécurité publics"
+    },
+    {
+      "key": "economic_affairs",
+      "en": "Economic Affairs",
+      "fr": "Affaires économiques"
+    },
+    {
+      "key": "environment",
+      "en": "Environmental Protection",
+      "fr": "Protection de l'environnement"
+    },
+    {
+      "key": "housing",
+      "en": "Housing & Community",
+      "fr": "Logement et équipements collectifs"
+    },
+    {
+      "key": "health",
+      "en": "Health",
+      "fr": "Santé"
+    },
+    {
+      "key": "culture",
+      "en": "Recreation, Culture & Religion",
+      "fr": "Loisirs, culture et culte"
+    },
+    {
+      "key": "education",
+      "en": "Education",
+      "fr": "Enseignement"
+    },
+    {
+      "key": "social_protection",
+      "en": "Social Protection",
+      "fr": "Protection sociale"
+    }
+  ],
+  "entries": [
+    {
+      "country": "CHE",
+      "year": 2024,
+      "totalSpendingGdp": 32.47,
+      "breakdown": {
+        "general_public_services": 0,
+        "defence": 0,
+        "public_order": 0,
+        "economic_affairs": 0,
+        "environment": 0,
+        "housing": 0,
+        "health": 0,
+        "culture": 0,
+        "education": 0,
+        "social_protection": 0
+      }
+    },
+    {
+      "country": "NOR",
+      "year": 2024,
+      "totalSpendingGdp": 49.34,
+      "breakdown": {
+        "general_public_services": 5.56,
+        "defence": 2.22,
+        "public_order": 1.06,
+        "economic_affairs": 5.56,
+        "environment": 0.98,
+        "housing": 0.88,
+        "health": 8.19,
+        "culture": 1.54,
+        "education": 4.82,
+        "social_protection": 18.53
+      }
+    },
+    {
+      "country": "ISL",
+      "year": 2024,
+      "totalSpendingGdp": 47.14,
+      "breakdown": {
+        "general_public_services": 8.71,
+        "defence": 0.06,
+        "public_order": 1.55,
+        "economic_affairs": 4.86,
+        "environment": 0.73,
+        "housing": 0.62,
+        "health": 8.1,
+        "culture": 2.93,
+        "education": 6.67,
+        "social_protection": 10.73
+      }
+    },
+    {
+      "country": "DNK",
+      "year": 2024,
+      "totalSpendingGdp": 47.33,
+      "breakdown": {
+        "general_public_services": 5.69,
+        "defence": 1.84,
+        "public_order": 0.98,
+        "economic_affairs": 3.05,
+        "environment": 0.4,
+        "housing": 0.35,
+        "health": 8.31,
+        "culture": 1.53,
+        "education": 5.55,
+        "social_protection": 19.64
+      }
+    },
+    {
+      "country": "SWE",
+      "year": 2024,
+      "totalSpendingGdp": 50.66,
+      "breakdown": {
+        "general_public_services": 5.28,
+        "defence": 1.78,
+        "public_order": 1.47,
+        "economic_affairs": 5.1,
+        "environment": 0.61,
+        "housing": 0.78,
+        "health": 7.43,
+        "culture": 1.4,
+        "education": 7.28,
+        "social_protection": 18.89
+      }
+    },
+    {
+      "country": "DEU",
+      "year": 2024,
+      "totalSpendingGdp": 49.43,
+      "breakdown": {
+        "general_public_services": 6.09,
+        "defence": 1.1,
+        "public_order": 1.6,
+        "economic_affairs": 5.78,
+        "environment": 0.58,
+        "housing": 0.45,
+        "health": 7.47,
+        "culture": 1,
+        "education": 4.44,
+        "social_protection": 19.49
+      }
+    },
+    {
+      "country": "IRL",
+      "year": 2024,
+      "totalSpendingGdp": 22.39,
+      "breakdown": {
+        "general_public_services": 2.16,
+        "defence": 0.24,
+        "public_order": 0.77,
+        "economic_affairs": 1.99,
+        "environment": 0.35,
+        "housing": 0.56,
+        "health": 5.03,
+        "culture": 0.45,
+        "education": 2.71,
+        "social_protection": 7.84
+      }
+    },
+    {
+      "country": "SGP",
+      "year": 2023,
+      "totalSpendingGdp": 16.4,
+      "breakdown": {
+        "general_public_services": 2.1,
+        "defence": 3,
+        "public_order": 1.5,
+        "economic_affairs": 3.8,
+        "environment": 0.4,
+        "housing": 1.2,
+        "health": 2.3,
+        "culture": 0.4,
+        "education": 2.7,
+        "social_protection": 0
+      }
+    },
+    {
+      "country": "NLD",
+      "year": 2024,
+      "totalSpendingGdp": 44.41,
+      "breakdown": {
+        "general_public_services": 3.64,
+        "defence": 1.37,
+        "public_order": 1.86,
+        "economic_affairs": 5.2,
+        "environment": 1.5,
+        "housing": 0.6,
+        "health": 7.13,
+        "culture": 1.14,
+        "education": 4.98,
+        "social_protection": 16.51
+      }
+    },
+    {
+      "country": "AUS",
+      "year": 2024,
+      "totalSpendingGdp": 39.64,
+      "breakdown": {
+        "general_public_services": 4.24,
+        "defence": 2.32,
+        "public_order": 1.97,
+        "economic_affairs": 5.24,
+        "environment": 0.91,
+        "housing": 0.62,
+        "health": 7.6,
+        "culture": 0.9,
+        "education": 5.66,
+        "social_protection": 10.6
+      }
+    },
+    {
+      "country": "BEL",
+      "year": 2024,
+      "totalSpendingGdp": 54.05,
+      "breakdown": {
+        "general_public_services": 6.72,
+        "defence": 0.94,
+        "public_order": 1.68,
+        "economic_affairs": 6.68,
+        "environment": 1.19,
+        "housing": 0.37,
+        "health": 7.82,
+        "culture": 1.22,
+        "education": 6.26,
+        "social_protection": 19.85
+      }
+    },
+    {
+      "country": "FIN",
+      "year": 2024,
+      "totalSpendingGdp": 57.75,
+      "breakdown": {
+        "general_public_services": 6.57,
+        "defence": 1.43,
+        "public_order": 1.24,
+        "economic_affairs": 4.59,
+        "environment": 0.22,
+        "housing": 0.47,
+        "health": 7.64,
+        "culture": 1.69,
+        "education": 6.32,
+        "social_protection": 25.7
+      }
+    },
+    {
+      "country": "GBR",
+      "year": 2024,
+      "totalSpendingGdp": 46.27,
+      "breakdown": {
+        "general_public_services": 6.3,
+        "defence": 2.22,
+        "public_order": 2.12,
+        "economic_affairs": 4.83,
+        "environment": 0.71,
+        "housing": 0.91,
+        "health": 8.61,
+        "culture": 0.58,
+        "education": 4.74,
+        "social_protection": 15.19
+      }
+    },
+    {
+      "country": "NZL",
+      "year": 2024,
+      "totalSpendingGdp": 44.04,
+      "breakdown": {
+        "general_public_services": 0,
+        "defence": 0,
+        "public_order": 0,
+        "economic_affairs": 0,
+        "environment": 0,
+        "housing": 0,
+        "health": 0,
+        "culture": 0,
+        "education": 0,
+        "social_protection": 0
+      }
+    },
+    {
+      "country": "JPN",
+      "year": 2024,
+      "totalSpendingGdp": 40.6,
+      "breakdown": {
+        "general_public_services": 3.61,
+        "defence": 1.14,
+        "public_order": 1.17,
+        "economic_affairs": 4.89,
+        "environment": 1.12,
+        "housing": 0.58,
+        "health": 8.13,
+        "culture": 0.38,
+        "education": 3.25,
+        "social_protection": 16.12
+      }
+    },
+    {
+      "country": "KOR",
+      "year": 2024,
+      "totalSpendingGdp": 35.05,
+      "breakdown": {
+        "general_public_services": 4.37,
+        "defence": 2.53,
+        "public_order": 1.23,
+        "economic_affairs": 4.75,
+        "environment": 0.96,
+        "housing": 1.16,
+        "health": 5.26,
+        "culture": 0.98,
+        "education": 5.03,
+        "social_protection": 9.31
+      }
+    },
+    {
+      "country": "CAN",
+      "year": 2024,
+      "totalSpendingGdp": 45.11,
+      "breakdown": {
+        "general_public_services": 0,
+        "defence": 0,
+        "public_order": 0,
+        "economic_affairs": 0,
+        "environment": 0,
+        "housing": 0,
+        "health": 0,
+        "culture": 0,
+        "education": 0,
+        "social_protection": 0
+      }
+    },
+    {
+      "country": "USA",
+      "year": 2024,
+      "totalSpendingGdp": 39.57,
+      "breakdown": {
+        "general_public_services": 6.85,
+        "defence": 3.03,
+        "public_order": 1.85,
+        "economic_affairs": 3.23,
+        "environment": 0,
+        "housing": 0.47,
+        "health": 10.08,
+        "culture": 0.24,
+        "education": 5.4,
+        "social_protection": 7.86
+      }
+    },
+    {
+      "country": "FRA",
+      "year": 2024,
+      "totalSpendingGdp": 57.26,
+      "breakdown": {
+        "general_public_services": 6.18,
+        "defence": 1.81,
+        "public_order": 1.72,
+        "economic_affairs": 6.28,
+        "environment": 1.02,
+        "housing": 1.26,
+        "health": 8.83,
+        "culture": 1.47,
+        "education": 5.01,
+        "social_protection": 23.28
+      }
+    },
+    {
+      "country": "AUT",
+      "year": 2024,
+      "totalSpendingGdp": 55.19,
+      "breakdown": {
+        "general_public_services": 6.04,
+        "defence": 0.68,
+        "public_order": 1.5,
+        "economic_affairs": 7.09,
+        "environment": 0.71,
+        "housing": 0.39,
+        "health": 9.47,
+        "culture": 1.26,
+        "education": 5.28,
+        "social_protection": 22.77
+      }
+    }
+  ]
+}

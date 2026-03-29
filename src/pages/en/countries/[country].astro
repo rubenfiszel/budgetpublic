@@ -1,0 +1,403 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CountryDetail from '../../../components/interactive/CountryDetail.svelte';
+import SpendingDrilldown from '../../../components/interactive/SpendingDrilldown.svelte';
+import FiscalBalance from '../../../components/interactive/FiscalBalance.svelte';
+import OutcomesChart from '../../../components/interactive/OutcomesChart.svelte';
+import BudgetSankey from '../../../components/interactive/BudgetSankey.svelte';
+import TaxBurdenChart from '../../../components/interactive/TaxBurdenChart.svelte';
+import IncomeTaxDeciles from '../../../components/interactive/IncomeTaxDeciles.svelte';
+import SpendingByAge from '../../../components/interactive/SpendingByAge.svelte';
+import SpendingFullBreakdown from '../../../components/interactive/SpendingFullBreakdown.svelte';
+import { t } from '../../../i18n/utils';
+import revenueData from '../../../data/revenue.json';
+import spendingData from '../../../data/spending.json';
+import spendingDetailedData from '../../../data/spending-detailed.json';
+import taxBurdenData from '../../../data/tax-burden.json';
+import fiscalData from '../../../data/fiscal.json';
+import outcomesData from '../../../data/outcomes.json';
+import countriesData from '../../../data/countries.json';
+import franceData from '../../../data/france-specific.json';
+
+type Country = { code: string; slug: string; name: { en: string; fr: string }; flag: string };
+type Breakdown = { pit: number; cit: number; ssc: number; vat: number; property: number; other: number };
+
+export function getStaticPaths() {
+  return (countriesData as Country[]).map((c) => ({ params: { country: c.slug } }));
+}
+
+const locale = 'en' as const;
+const { country: slug } = Astro.params;
+const countryMeta = (countriesData as Country[]).find((c) => c.slug === slug);
+if (!countryMeta) return Astro.redirect(`/${locale}/`, 302);
+
+const code = countryMeta.code;
+const countryName = countryMeta.name[locale];
+
+// Revenue data
+const entry = revenueData.entries.find((e) => e.country === code);
+if (!entry) return Astro.redirect(`/${locale}/`, 302);
+
+const oecdRevEntries = revenueData.entries.filter((e) => e.country !== 'SGP');
+const avgBreakdown: Breakdown = {
+  pit: avg(oecdRevEntries.map((e) => e.breakdown.pit)),
+  cit: avg(oecdRevEntries.map((e) => e.breakdown.cit)),
+  ssc: avg(oecdRevEntries.map((e) => e.breakdown.ssc)),
+  vat: avg(oecdRevEntries.map((e) => e.breakdown.vat)),
+  property: avg(oecdRevEntries.map((e) => e.breakdown.property)),
+  other: avg(oecdRevEntries.map((e) => e.breakdown.other)),
+};
+const avgTotal = avg(oecdRevEntries.map((e) => e.totalTaxGdp));
+
+// Spending data
+const spendingEntry = spendingData.entries.find((e: any) => e.country === code);
+const spendingCategoryLabels: Record<string, string> = {};
+for (const cat of spendingData.categories) {
+  spendingCategoryLabels[cat.key] = (cat as any)[locale];
+}
+
+// Detailed spending (COFOG L2) — pre-compute flat rows for the chart
+const detailedBreakdown = (spendingDetailedData as any).entries?.[code] ?? null;
+const cofogLabels = (spendingDetailedData as any).labels ?? {};
+
+const L1_COFOG_MAP: Record<string, string> = {
+  social_protection: 'GF10', health: 'GF07', education: 'GF09',
+  economic_affairs: 'GF04', general_public_services: 'GF01',
+  defence: 'GF02', public_order: 'GF03', environment: 'GF05',
+  housing: 'GF06', culture: 'GF08',
+};
+const PARENT_COLORS: Record<string, string> = {
+  GF10: '#3b82f6', GF07: '#ef4444', GF09: '#10b981',
+  GF04: '#f59e0b', GF01: '#f97316', GF02: '#6366f1',
+  GF03: '#8b5cf6', GF05: '#14b8a6', GF06: '#ec4899', GF08: '#6b7280',
+};
+
+interface SpendingRow { label: string; value: number; pctOfTotal: number; color: string; isParent: boolean }
+const spendingRows: SpendingRow[] = [];
+if (spendingEntry) {
+  const totalSp = spendingEntry.totalSpendingGdp;
+  const sortedL1 = Object.entries(spendingEntry.breakdown)
+    .filter(([, v]) => (v as number) > 0)
+    .sort((a, b) => (b[1] as number) - (a[1] as number));
+
+  for (const [l1Key, l1Val] of sortedL1) {
+    const cofogCode = L1_COFOG_MAP[l1Key] ?? '';
+    const color = PARENT_COLORS[cofogCode] ?? '#94a3b8';
+    const l1Label = cofogLabels[cofogCode]?.[locale] ?? spendingCategoryLabels[l1Key] ?? l1Key;
+
+    spendingRows.push({
+      label: l1Label,
+      value: l1Val as number,
+      pctOfTotal: totalSp > 0 ? ((l1Val as number) / totalSp) * 100 : 0,
+      color,
+      isParent: true,
+    });
+
+    // Add L2 children if available
+    if (detailedBreakdown) {
+      const children = Object.entries(cofogLabels)
+        .filter(([, info]: any) => info.parent === cofogCode)
+        .map(([childCode, info]: any) => ({
+          code: childCode,
+          label: info[locale] ?? childCode,
+          value: (detailedBreakdown[childCode] as number) ?? 0,
+        }))
+        .filter(c => c.value > 0.05)
+        .sort((a, b) => b.value - a.value);
+
+      for (const child of children) {
+        spendingRows.push({
+          label: child.label,
+          value: child.value,
+          pctOfTotal: totalSp > 0 ? (child.value / totalSp) * 100 : 0,
+          color: color + '99',
+          isParent: false,
+        });
+      }
+    }
+  }
+}
+
+// Tax burden data
+const taxBurdenEntry = (taxBurdenData as any).entries?.find((e: any) => e.country === code);
+
+// France-specific data
+const isFrance = code === 'FRA';
+const franceSpecific = isFrance ? franceData : null;
+
+// Fiscal data
+const fiscalEntry = fiscalData.entries.find((e: any) => e.country === code);
+
+// Outcomes data
+const outcomeEntry = outcomesData.entries.find((e: any) => e.country === code);
+
+// Build scatter plot points for health and education
+const healthPoints = (countriesData as Country[]).map((c) => {
+  const sp = spendingData.entries.find((e: any) => e.country === c.code);
+  const oc = outcomesData.entries.find((e: any) => e.country === c.code);
+  return {
+    code: c.code, name: c.name[locale], flag: c.flag,
+    xValue: sp?.breakdown?.health ?? 0,
+    yValue: oc?.lifeExpectancy ?? 0,
+    isHighlighted: c.code === code,
+  };
+}).filter(p => p.xValue > 0 && p.yValue > 0);
+
+const educationPoints = (countriesData as Country[]).map((c) => {
+  const sp = spendingData.entries.find((e: any) => e.country === c.code);
+  const oc = outcomesData.entries.find((e: any) => e.country === c.code);
+  return {
+    code: c.code, name: c.name[locale], flag: c.flag,
+    xValue: sp?.breakdown?.education ?? 0,
+    yValue: oc?.pisaAverage ?? 0,
+    isHighlighted: c.code === code,
+  };
+}).filter(p => p.xValue > 0 && p.yValue > 0);
+
+function avg(arr: number[]): number {
+  return Math.round((arr.reduce((s, v) => s + v, 0) / arr.length) * 100) / 100;
+}
+
+// Pre-compute deficit value for Sankey (avoid < in template)
+const sankeyDeficit = fiscalEntry ? (fiscalEntry.balance < 0 ? Math.abs(fiscalEntry.balance) : -fiscalEntry.balance) : 0;
+
+const taxCategoryLabels = {
+  pit: t(locale, 'tax_categories.pit'), cit: t(locale, 'tax_categories.cit'),
+  ssc: t(locale, 'tax_categories.ssc'), vat: t(locale, 'tax_categories.vat'),
+  property: t(locale, 'tax_categories.property'), other: t(locale, 'tax_categories.other'),
+};
+---
+<BaseLayout
+  title={`${countryMeta.flag} ${countryName}`}
+  description={`${countryName} — government budget: taxes, spending, debt, and outcomes`}
+  locale={locale}
+>
+  <a href={`/${locale}/`} class="back-link">&larr; {t(locale, 'country.back')}</a>
+
+  <section class="country-hero">
+    <span class="hero-flag">{countryMeta.flag}</span>
+    <div>
+      <h1>{countryName}</h1>
+      <p class="subtitle">
+        {t(locale, 'country.tax_to_gdp')}: <strong>{entry.totalTaxGdp.toFixed(1)}%</strong>
+        <span class="vs-avg">
+          ({entry.totalTaxGdp > avgTotal ? '+' : ''}{(entry.totalTaxGdp - avgTotal).toFixed(1)}% vs {t(locale, 'common.oecd_average')})
+        </span>
+      </p>
+      <p class="data-year">{t(locale, 'home.data_year')}: {revenueData.dataYear}</p>
+    </div>
+  </section>
+
+  <!-- Fiscal Balance -->
+  {fiscalEntry && (
+    <h2 class="section-title">{t(locale, 'country.fiscal_balance')}</h2>
+    <FiscalBalance
+      client:load
+      revenue={fiscalEntry.revenue}
+      spending={fiscalEntry.spending}
+      balance={fiscalEntry.balance}
+      debt={fiscalEntry.debt}
+      labels={{
+        revenue: t(locale, 'country.revenue'),
+        spending: t(locale, 'country.spending'),
+        balance: t(locale, 'country.balance'),
+        deficit: t(locale, 'country.deficit'),
+        surplus: t(locale, 'country.surplus'),
+        debt: t(locale, 'country.debt'),
+        of_gdp: t(locale, 'country.of_gdp'),
+      }}
+    />
+  )}
+
+  <!-- Budget Flow Sankey -->
+  {spendingEntry && fiscalEntry && (
+    <h2 class="section-title">{t(locale, 'country.budget_flow')}</h2>
+    <BudgetSankey
+      client:load
+      revenueBreakdown={entry.breakdown}
+      spendingBreakdown={spendingEntry.breakdown}
+      deficit={sankeyDeficit}
+      revenueLabels={taxCategoryLabels}
+      spendingLabels={spendingCategoryLabels}
+      deficitLabel={t(locale, 'country.borrowing')}
+      surplusLabel={t(locale, 'country.surplus')}
+      locale={locale}
+    />
+  )}
+
+  <!-- Tax Revenue Breakdown -->
+  <h2 class="section-title">{t(locale, 'country.tax_breakdown')}</h2>
+  <CountryDetail
+    client:load
+    breakdown={entry.breakdown}
+    oecdAvgBreakdown={avgBreakdown}
+    totalTaxGdp={entry.totalTaxGdp}
+    oecdAvgTotal={avgTotal}
+    categoryLabels={taxCategoryLabels}
+    vsAverageLabel={t(locale, 'country.vs_average')}
+    countryName={countryName}
+    oecdLabel={t(locale, 'common.oecd_average')}
+    unitLabel={t(locale, 'country.of_gdp')}
+  />
+
+  <!-- Tax Burden by Income Level -->
+  {taxBurdenEntry && (
+    <h2 class="section-title">{locale === 'en' ? 'Tax Burden by Income Level' : 'Charge fiscale par niveau de revenu'}</h2>
+    <TaxBurdenChart
+      client:load
+      incomeLevels={taxBurdenEntry.incomeLevels}
+      incomeLevelLabels={(taxBurdenData as any).incomeLevelLabels}
+      corporateShare={taxBurdenEntry.corporateShare}
+      individualShare={taxBurdenEntry.individualShare}
+      locale={locale}
+      countryName={countryName}
+    />
+  )}
+
+  <!-- France-specific: Income Tax by Decile -->
+  {franceSpecific && (
+    <h2 class="section-title">{locale === 'en' ? 'Who Pays Income Tax? (by income decile)' : 'Qui paie l\'impôt sur le revenu ? (par décile)'}</h2>
+    <IncomeTaxDeciles
+      client:load
+      deciles={franceSpecific.incomeTaxByDecile.deciles}
+      description={(franceSpecific.incomeTaxByDecile.description as any)[locale]}
+      locale={locale}
+    />
+  )}
+
+  <!-- Spending Breakdown -->
+  {spendingEntry && (
+    <h2 class="section-title">{t(locale, 'country.spending_breakdown')}</h2>
+    <SpendingFullBreakdown
+      client:load
+      rows={spendingRows}
+      locale={locale}
+    />
+  )}
+
+  <!-- France-specific: Spending by Age -->
+  {franceSpecific && (
+    <h2 class="section-title">{locale === 'en' ? 'Government Spending by Age Group' : 'Dépenses publiques par tranche d\'âge'}</h2>
+    <SpendingByAge
+      client:load
+      groups={franceSpecific.spendingByAge.groups}
+      description={(franceSpecific.spendingByAge.description as any)[locale]}
+      locale={locale}
+    />
+  )}
+
+  <!-- Outcomes / Efficiency -->
+  {outcomeEntry && (
+    <h2 class="section-title">{t(locale, 'outcomes.title')}</h2>
+    <div class="outcomes-grid">
+      {healthPoints.length > 0 && (
+        <OutcomesChart
+          client:load
+          points={healthPoints}
+          title={t(locale, 'outcomes.health_title')}
+          xLabel={t(locale, 'outcomes.health_spending')}
+          yLabel={t(locale, 'outcomes.life_expectancy')}
+          xUnit="%"
+          yUnit={` ${t(locale, 'outcomes.years')}`}
+        />
+      )}
+      {educationPoints.length > 0 && (
+        <OutcomesChart
+          client:load
+          points={educationPoints}
+          title={t(locale, 'outcomes.education_title')}
+          xLabel={t(locale, 'outcomes.education_spending')}
+          yLabel={t(locale, 'outcomes.pisa_average')}
+          xUnit="%"
+          yUnit=""
+        />
+      )}
+    </div>
+    <div class="outcome-summary">
+      <div class="outcome-stat">
+        <span class="stat-label">{t(locale, 'outcomes.life_expectancy')}</span>
+        <span class="stat-value">{outcomeEntry.lifeExpectancy ?? '—'} {t(locale, 'outcomes.years')}</span>
+      </div>
+      <div class="outcome-stat">
+        <span class="stat-label">{t(locale, 'outcomes.infant_mortality')}</span>
+        <span class="stat-value">{outcomeEntry.infantMortality ?? '—'} {t(locale, 'outcomes.per_1000')}</span>
+      </div>
+      <div class="outcome-stat">
+        <span class="stat-label">{t(locale, 'outcomes.pisa_average')}</span>
+        <span class="stat-value">{outcomeEntry.pisaAverage ?? '—'}</span>
+      </div>
+    </div>
+  )}
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+  .back-link:hover { color: var(--color-primary); }
+
+  .country-hero {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .hero-flag { font-size: 3.5rem; }
+  .country-hero h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; }
+  .subtitle { color: var(--color-text-muted); font-size: 1.05rem; margin-top: 0.25rem; }
+  .subtitle strong { color: var(--color-text); }
+  .vs-avg { font-size: 0.9rem; }
+  .data-year { font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.15rem; opacity: 0.8; }
+
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .outcomes-grid { grid-template-columns: 1fr; }
+  }
+
+  .outcome-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  @media (max-width: 600px) {
+    .outcome-summary { grid-template-columns: 1fr; }
+  }
+
+  .outcome-stat {
+    text-align: center;
+    padding: 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+  .stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 0.25rem;
+  }
+  .stat-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+</style>
